@@ -1,4 +1,4 @@
-package dev.ricardo.mastersys.infrastrucure.entitys;
+package dev.ricardo.mastersys.infrastrucure.enums;
 
 public enum StatusFatura {
     ABERTA,

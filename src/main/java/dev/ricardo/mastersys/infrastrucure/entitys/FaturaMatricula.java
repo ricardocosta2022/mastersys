@@ -1,5 +1,6 @@
 package dev.ricardo.mastersys.infrastrucure.entitys;
 
+import dev.ricardo.mastersys.infrastrucure.enums.StatusFatura;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -25,6 +26,8 @@ public class FaturaMatricula {
     @Column(name = "data_cancelamento")
     private LocalDateTime dataCancelamento;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private StatusFatura status = StatusFatura.ABERTA;
 
 
