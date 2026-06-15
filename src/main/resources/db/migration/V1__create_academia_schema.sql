@@ -14,17 +14,15 @@ CREATE TABLE alunos(
     bairro VARCHAR(255),
     cidade VARCHAR(255),
     estado VARCHAR(255),
-    cep VARCHAR(20)
+    cep VARCHAR(20),
     criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em TIMESTAMP
 );
 
-
 CREATE TABLE modalidades(
-
     id  SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL UNIQUE,
-    ativa BOOLEAN NOT NULL DEFAULT TRUE,
+    ativa BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE graduacoes(
@@ -53,7 +51,7 @@ CREATE TABLE matriculas(
     dia_vencimento INT NOT NULL CHECK(dia_vencimento >= 1 AND dia_vencimento <= 31),
     data_encerramento DATE,
     status VARCHAR(20)  NOT NULL DEFAULT 'ATIVA',
-    CHECK (status = 'ATIVA' ,'CANCELADA', 'ENCERRADA'))
+    CHECK (status IN ( 'ATIVA' ,'CANCELADA', 'ENCERRADA'))
 
 );
 
