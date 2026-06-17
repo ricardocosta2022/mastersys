@@ -4,6 +4,7 @@ package dev.ricardo.mastersys.controllers;
 import dev.ricardo.mastersys.business.services.AlunoService;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoResponse;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class AlunoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AlunoResponse cadastrar(@RequestBody AlunoRequest request){
+    public AlunoResponse cadastrar(@RequestBody @Valid AlunoRequest request){
         return alunoService.cadastrar(request);
     }
 
@@ -36,13 +37,13 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public AlunoResponse atualizar(@PathVariable Long id, @RequestBody AlunoRequest request) {
+    public AlunoResponse atualizar(@PathVariable @Valid Long id, @RequestBody AlunoRequest request) {
         return alunoService.atualizar(id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void ecluir(@PathVariable Long id) {
+    public void excluir(@PathVariable Long id) {
         alunoService.excluir(id);
     }
 

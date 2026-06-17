@@ -1,5 +1,6 @@
 package dev.ricardo.mastersys.business.services;
 
+import dev.ricardo.mastersys.exceptions.RegraNegocioException;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoResponse;
 import dev.ricardo.mastersys.infrastrucure.entitys.Aluno;
@@ -21,7 +22,7 @@ public class AlunoService {
         if(request != null){
             var aluno = alunoRepository.findByCpf(request.cpf() );
             if(aluno != null){
-                throw new RuntimeException("Aluno já cadastrado com esse CPF");
+                throw new RegraNegocioException("Aluno já cadastrado com esse CPF");
             }
         }
 
@@ -59,7 +60,7 @@ public class AlunoService {
 
     private Aluno buscarEntityPorId(Long id){
         return alunoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Aluno não encontrado com o ID: " + id));
+                .orElseThrow(() -> new RegraNegocioException("Aluno não encontrado com o ID: " + id));
     }
 
 
