@@ -15,6 +15,8 @@ public class Aluno {
 
     private String nome;
 
+    private String cpf;
+
     @Column(name="data_nascimento")
     private LocalDate dataNascimento;
 
@@ -22,6 +24,7 @@ public class Aluno {
     private String sexo;
     private String telefone;
     private String celular;
+    private String email;
     private String observacao;
     private String endereco;
     private String numero;
@@ -29,7 +32,7 @@ public class Aluno {
     private String bairro;
     private String cidade;
 
-    @Column(name="estado", length = 2)
+    @Column(name="estado", length = 255)
     private String estado;
     private String cep;
 
@@ -66,6 +69,14 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -88,6 +99,14 @@ public class Aluno {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCelular() {

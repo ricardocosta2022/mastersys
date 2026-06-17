@@ -2,6 +2,7 @@ CREATE TABLE alunos(
 
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
     data_nascimento DATE,
     sexo VARCHAR(1) CHECK (sexo IN ('M', 'F')),
     telefone VARCHAR(20),
