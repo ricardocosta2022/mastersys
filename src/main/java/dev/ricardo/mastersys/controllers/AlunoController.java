@@ -2,6 +2,7 @@ package dev.ricardo.mastersys.controllers;
 
 
 import dev.ricardo.mastersys.business.services.AlunoService;
+import dev.ricardo.mastersys.doc.AlunoControllerDoc;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoFiltroRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/alunos")
-public class AlunoController {
+public class AlunoController implements AlunoControllerDoc {
 
     private final AlunoService alunoService;
 
