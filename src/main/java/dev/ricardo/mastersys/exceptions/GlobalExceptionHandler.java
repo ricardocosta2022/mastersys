@@ -12,6 +12,7 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErroResponse> tratarErroValidacao(MethodArgumentNotValidException ex){
 
@@ -31,7 +32,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-
+    @ExceptionHandler(RegraNegocioException.class)
     public ResponseEntity<ErroResponse> tratarRegraNegocio(RegraNegocioException ex){
         ErroResponse response = new ErroResponse(
                 LocalDateTime.now(),

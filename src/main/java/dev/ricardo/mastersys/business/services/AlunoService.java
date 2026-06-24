@@ -1,6 +1,8 @@
 package dev.ricardo.mastersys.business.services;
 
+import dev.ricardo.mastersys.business.specification.AlunoSpecification;
 import dev.ricardo.mastersys.exceptions.RegraNegocioException;
+import dev.ricardo.mastersys.infrastrucure.dtos.AlunoFiltroRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoResponse;
 import dev.ricardo.mastersys.infrastrucure.entitys.Aluno;
@@ -8,6 +10,8 @@ import dev.ricardo.mastersys.infrastrucure.repository.AlunoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AlunoService {
@@ -32,9 +36,9 @@ public class AlunoService {
 
     }
 
-
-    public Page<AlunoResponse> listar(Pageable pageable){
-        return alunoRepository.findAll(pageable).map(AlunoResponse::fromEntity);
+    public Page<AlunoResponse> listar(AlunoFiltroRequest alunoFiltroRequest, Pageable pageable){
+        return alunoRepository.findAll(AlunoSpecification.comFiltros(alunoFiltroRequest),pageable)
+                .map(AlunoResponse::fromEntity);
     }
 
     public AlunoResponse buscarPorId(Long id){
@@ -51,7 +55,6 @@ public class AlunoService {
 
     }
 
-
     public void excluir(Long id) {
         Aluno aluno = buscarEntityPorId(id);
         alunoRepository.delete(aluno);
@@ -62,6 +65,7 @@ public class AlunoService {
         return alunoRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Aluno não encontrado com o ID: " + id));
     }
+
 
 
 

@@ -2,13 +2,17 @@ package dev.ricardo.mastersys.controllers;
 
 
 import dev.ricardo.mastersys.business.services.AlunoService;
+import dev.ricardo.mastersys.infrastrucure.dtos.AlunoFiltroRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoRequest;
 import dev.ricardo.mastersys.infrastrucure.dtos.AlunoResponse;
+import dev.ricardo.mastersys.infrastrucure.entitys.Aluno;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/alunos")
@@ -26,9 +30,9 @@ public class AlunoController {
         return alunoService.cadastrar(request);
     }
 
-    @GetMapping
-    public Page<AlunoResponse> listar(Pageable pageable){
-        return alunoService.listar(pageable);
+    @GetMapping("/listar")
+    public Page<AlunoResponse> listar(AlunoFiltroRequest alunoFiltroRequest , Pageable pageable){
+        return alunoService.listar(alunoFiltroRequest, pageable);
     }
 
     @GetMapping("/{id}")
@@ -46,6 +50,10 @@ public class AlunoController {
     public void excluir(@PathVariable Long id) {
         alunoService.excluir(id);
     }
+
+
+
+
 
 
 }

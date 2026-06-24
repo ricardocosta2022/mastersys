@@ -1,0 +1,6 @@
+### LISTAR TODOS
+GET http://localhost:8080/alunos/listar?page=0&size=10&sort=nome,asc
+
+
+### LISTAR COM FILTROS
+GET http://localhost:8080/alunos/listar?cidade=Rio de Janeiro
